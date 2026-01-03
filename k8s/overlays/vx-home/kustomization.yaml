@@ -5,13 +5,14 @@ kind: Kustomization
 # This overlay customizes the base manifests for the vx-home environment
 
 resources:
-  # Namespace
+  # Namespaces
   - namespaces/ai.yaml
+  - namespaces/tools.yaml
 
   # cert-manager ClusterIssuers
   - cert-manager/clusterissuer.yaml
 
-  # Apps (each has its own kustomization with patches)
+  # AI Apps (each has its own kustomization with patches)
   # Note: Ingress is patched via apps/openwebui/patches/ingress.yaml
   - apps/openwebui
   - apps/pgvector
@@ -19,6 +20,9 @@ resources:
   - apps/pgadmin
   - apps/kokoro
   - apps/faster-whisper
+
+  # Tools Apps
+  - apps/omni-tools
 
   # Network Policies (restricts pod-to-pod communication)
   - network-policies

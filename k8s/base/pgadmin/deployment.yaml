@@ -31,8 +31,17 @@ spec:
           value: "1"
         - name: PGADMIN_SERVER_JSON_FILE
           value: /pgadmin4/servers.json
-        - name: SCRIPT_NAME
-          value: /pgadmin
+        # Trust proxy headers (required behind ingress)
+        - name: PGADMIN_CONFIG_PROXY_X_FOR_COUNT
+          value: "1"
+        - name: PGADMIN_CONFIG_PROXY_X_PROTO_COUNT
+          value: "1"
+        - name: PGADMIN_CONFIG_PROXY_X_HOST_COUNT
+          value: "1"
+        - name: PGADMIN_CONFIG_PROXY_X_PORT_COUNT
+          value: "1"
+        - name: PGADMIN_CONFIG_PROXY_X_PREFIX_COUNT
+          value: "1"
         volumeMounts:
         - name: servers-json
           mountPath: /pgadmin4/servers.json
